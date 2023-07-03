@@ -83,4 +83,6 @@ When on the aws console home be in the Ireland region. This region is reserved f
 
 ## Deploying scripts in AWS
 
-As I am creating two VMs I created a txt file which says I am the app in the home directory of the app VM.
+As I am creating two VMs I created a txt file which says I am the app in the home directory of the app VM. I alos created on for the database VM.
+
+In both VMs I created the provison.sh file and by using `nano` and then copied and pasted the relevent scripts from my github repo 'Deploying and Automating'. I then give myself execute permissions using `chmod u+x provision.sh` . I first ran the database script `./provision.sh` . This needed to be run twice to work? I may need a restart for mongodb in there somewhere. Then I ran the app script `./provison.sh`. Then I checked to see if they worked by going to the public app IP address and seeing if the homepage and the posts page came up which they did. 
