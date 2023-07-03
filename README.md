@@ -80,3 +80,7 @@ When on the aws console home be in the Ireland region. This region is reserved f
 
 - Terminate means delete 
 - located in instance state 
+
+## Deploying scripts in AWS
+
+As I am creating two VMs I created a txt file which says I am the app in the home directory of the app VM.
