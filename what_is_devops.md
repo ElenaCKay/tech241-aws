@@ -26,4 +26,4 @@ DevOps can set up a dev environment which correlates with the automation process
 
 The image below shows the lifecycle of DevOps and the different stages. It displays the iterative method of DevOps.
 
-![DevOps life cycle](devops_cycle.png)
+![DevOps life cycle](img/devops_cycle.png)
