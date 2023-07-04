@@ -111,6 +111,8 @@ When I connected I checked if it worked by checking the status of mongodb and if
 
 An Amazon Machine Image (AMI) is a template that contains a software configuration (for example, an operating system, an application server, and applications). From an AMI, you launch an instance, which is a copy of the AMI running as a virtual server in the cloud.
 
+AMIs cost less to run then a virtual machine.
+
 ### Making a AMI
 
 1. Search EC2
@@ -135,3 +137,20 @@ When this is done you can launch an instance from it. This means that you dont n
 to 
 
 `ssh -i "~/.ssh/tech241.pem" ubuntu@ec2-54-170-127-17.eu-west-1.compute.amazo.com`
+
+## Monitering
+
+Detailed monitoring sends you data every minute.
+
+### Creating alert
+1. Go to the CloudWatch console at https://console.aws.amazon.com/cloudwatch/
+2. Go to Alarms, All Alarms
+3. Create alarm
+4. Select metric
+5. Select GetDashboard CloudWatch metric
+6. Set conditions for the metric
+7. Set notifications
+
+### Dashboard
+
+To set up a dashboard you can go to the instance you want a dashboard of and then set up a dashboard.
