@@ -154,3 +154,59 @@ Detailed monitoring sends you data every minute.
 ### Dashboard
 
 To set up a dashboard you can go to the instance you want a dashboard of and then set up a dashboard.
+
+## S3 Simple storage service
+
+Like blob storage in azure. Used to store content on the cloud in a robust way over multiple regions if you like. Instead of container it is bucket. Don't touch the buckets already there. The region is global.
+
+## Scaling 
+
+What happens if the CPU load is too high? It will delay and crash.
+
+How to stop this?
+
+1. CW monitering - watch it on the dashboard
+2. CW monitering - set an alarm and it will give a notification
+3. CW monitering - autoscaling - it will automatically scale depending on different aspects for example CPU load. More VMs may be used to scale up.
+
+AWS Auto scaling group 
+
+VM -> AMI -> Launch template
+
+The template has all of the details filled in and is used for an autoscaling group. It needs to know all the details for the vm it is going to make to handle the change in CPU. It needs to know the threshold of when to create a new instance -> this is the scaling policy. Example: CPU > 50% launch more instances. It needs to know the minimum number of vms. In our case it will be two. It needs a maximum as well as it will be too expenive to run lots. In our case it is three.
+
+Scaling policy breakdown:
+
+- CPU 50%
+- Min 2
+- Desired 2
+- Max 3
+
+Internet facing so traffic comes in and goes through the load balancer. The VMs should be in different avalibility zones.
+
+Steps to make auto scaling group working:
+
+- Create DB VM
+- Create App VM
+- Create AMI of the app
+- Create Launch template using AMI
+- Test the launch template
+- Create ASG
+
+### Create DB VM
+This is the first step as the app needs to connect to it in order fror the posts page to work. It will also give the private IP address which is needed in the app script for the app vm. Make sure the db vm instance is running. I used the one already created where the user data contained the db script.
+
+### Create App VM
+I created an APP VM ensuring that the user data had the correct script with the DB IP environment variable. I then checked it was running correctly and the posts page worked which meant it was connected to the DB.
+
+### Create AMI of the App VM
+This is like a replica of the disk within the App VM. It has all of the dependencies , folders, OS ready to go. To test this you can create an instance from the ami and go to the ip address and see if it is running the app.
+
+### Create Launch Template using AMI
+A launch template contains all of the details for a particular ami to run. This includes NSG rules, instance type, key pair, network settings and the user data script. As the AMI already has all the dependencies and folders, the user data just needs to run the app. This new script is in the app_script_only_start_app.md. Using a launch template saves lots of time as you dont need to fill in any details and the script is a lot shorter.
+
+### Test the launch template
+To do this create an instance using the launch template. It should run quite quickly compared to a normal VM or AMI. If it runs with the posts page, it is successful.
+
+### Create ASG
+The auto scaling group, uses the launch template to create instances depending on the configuration of the scaling policies. For example: we set it so if the CPU reaches over 50% then it will create another instance. The minimum is 2 and the maximum is 3.
