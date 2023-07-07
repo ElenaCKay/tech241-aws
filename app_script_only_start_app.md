@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create env variable. Ensure the ip is changed to represent the correct db vm
-export DB_HOST=mongodb://172.31.28.98:27017/posts
+export DB_HOST=mongodb://10.0.3.111:27017/posts
 printenv DB_HOST
 echo "env variable created"
 

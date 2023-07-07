@@ -210,3 +210,5 @@ To do this create an instance using the launch template. It should run quite qui
 
 ### Create ASG
 The auto scaling group, uses the launch template to create instances depending on the configuration of the scaling policies. For example: we set it so if the CPU reaches over 50% then it will create another instance. The minimum is 2 and the maximum is 3.
+
+
